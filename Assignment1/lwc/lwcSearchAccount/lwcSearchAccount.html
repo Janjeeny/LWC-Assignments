@@ -1,0 +1,40 @@
+<template >
+    
+    <lightning-layout horizontal-align="space" >
+        <lightning-layout-item padding="around-small">
+            <lightning-card  title="Search Accounts">
+                <lightning-button label="Search" slot="actions" onclick={fetchAccounts}></lightning-button>
+                <p class="slds-p-horizontal_small slds-p-vertical_small">
+                    <lightning-input type="text" label="Search Term" name="Term" required></lightning-input>
+                    <lightning-input type="text" label="No. of records to return" name="Limit" required></lightning-input>
+                </p>
+            </lightning-card>
+        </lightning-layout-item>
+
+        <lightning-layout-item padding="around-small">
+            <lightning-card  title="Filter Accounts">
+                <lightning-button label="Filter" slot="actions" onclick={applyFilter}></lightning-button>
+                <p class="slds-p-horizontal_small slds-p-vertical_small">
+                    <lightning-input type="text" label="Filter Term" onchange={filterVal} value={filterValue}></lightning-input>
+                    <template if:true={AccountListLength}>
+                        <template for:each={AccountList} for:item="acc">
+                            <!-- calling chilld component and passing Attrributes-->
+                            <c-lwc-display-account key= {acc.Id} acc-record= {acc}></c-lwc-display-account>
+                        </template>
+                    </template>
+                    <template if:true={showLoading}>
+                        <lightning-spinner
+                        alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                    </template>
+                    <template if:true={displayMessage}>
+                        {message}
+                    </template>
+
+                </p>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+
+
+</template>

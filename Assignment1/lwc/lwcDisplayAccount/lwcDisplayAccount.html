@@ -1,0 +1,11 @@
+<template>
+    <div class="slds-p-around_medium lgc-bg" key={accRecord.Id}>
+        <lightning-tile label={accRecord.Name} href="" type="media">
+            <lightning-avatar slot="media" fallback-icon-name="standard:person_account" alternative-text={accRecord.Name}></lightning-avatar>
+            <ul class="slds-list_horizontal slds-has-dividers_right">
+                <li class="slds-item">{accRecord.Phone}</li>
+                <li class="slds-item">{accRecord.Industry}</li>
+            </ul>
+        </lightning-tile>
+    </div>
+</template>
